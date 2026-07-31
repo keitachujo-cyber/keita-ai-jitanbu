@@ -1,0 +1,292 @@
+/* --- ベーススタイル --- */
+body {
+    font-family: "Helvetica Neue", Arial, sans-serif;
+    color: #111111;
+    background-color: #FFFFFF;
+    margin: 0;
+    padding: 0;
+    line-height: 1.6;
+    font-size: 16px;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+ul {
+    margin: 0; padding: 0; list-style: none;
+}
+
+h1, h2, h3 {
+    margin: 0; font-weight: normal;
+}
+
+/* --- ヘッダー --- */
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+    position: fixed;
+    top: 0; left: 0;
+    width: 100%;
+    z-index: 100;
+    background: rgba(255,255,255,0.9);
+}
+
+.header .logo {
+    font-size: 1.5rem;
+    font-weight: bold;
+    letter-spacing: 0.05em;
+}
+
+.header .menu-icon {
+    width: 28px; height: 18px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.header .menu-icon span {
+    display: block; height: 2px;
+    background-color: #111111;
+}
+
+/* --- ファーストビュー --- */
+.hero {
+    min-height: 100vh;
+    background-color: #F4F4F4;
+    position: relative;
+    padding: 120px 40px 60px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.vertical-label {
+    writing-mode: vertical-rl;
+    position: absolute;
+    top: 120px;
+    left: 20px;
+    font-size: 0.75rem;
+    color: #666;
+    letter-spacing: 0.1em;
+}
+
+.vertical-label-right {
+    left: auto;
+    right: 20px;
+    top: 40px;
+}
+
+.hero h1 {
+    font-size: 2.2rem;
+    line-height: 1.5;
+    font-weight: 300;
+}
+
+.social-links {
+    position: absolute;
+    right: 20px;
+    top: 50%;
+    transform: translateY(-50%);
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.social-links a {
+    font-size: 0;
+    width: 32px; height: 32px;
+    border: 1px solid #ccc;
+    border-radius: 50%;
+    display: flex; justify-content: center; align-items: center;
+}
+
+/* --- イメージ画像ブロック --- */
+.image-link-block {
+    display: block;
+    height: 70vh;
+    background-size: cover;
+    background-position: center;
+    background-color: #333; /* 写真がない場合の仮カラー */
+    position: relative;
+    margin-bottom: 8px;
+    color: #FFFFFF;
+}
+
+/* 各ブロックの仮背景（実際の写真を入れたら background-image に変更できます） */
+.block-1 { background-image: linear-gradient(rgba(0,0,0,0.2), rgba(0,0,0,0.5)), url('images/hero.jpg'); }
+.block-2 { background-image: linear-gradient(rgba(0,0,0,0.2), rgba(0,0,0,0.5)), url('images/works1.jpg'); }
+.block-3 { background-image: linear-gradient(rgba(0,0,0,0.2), rgba(0,0,0,0.5)), url('images/works2.jpg'); }
+.block-4 { background-image: linear-gradient(rgba(0,0,0,0.2), rgba(0,0,0,0.5)), url('images/works3.jpg'); }
+
+.block-text {
+    position: absolute;
+    bottom: 30px; left: 30px;
+}
+
+.client {
+    font-size: 0.85rem;
+    margin-bottom: 8px;
+    opacity: 0.9;
+}
+
+.image-link-block h2 {
+    font-size: 1.5rem;
+    line-height: 1.4;
+}
+
+/* --- 制作実績セクション --- */
+.works {
+    padding: 80px 20px;
+    text-align: center;
+    background: #fff;
+}
+
+.section-eyecatch {
+    font-size: 0.85rem;
+    color: #666;
+    margin-bottom: 10px;
+    letter-spacing: 0.1em;
+}
+
+.works h2 {
+    font-size: 1.8rem;
+    margin-bottom: 20px;
+}
+
+.btn-filter {
+    display: inline-block;
+    border: 1px solid #ccc;
+    padding: 8px 24px;
+    font-size: 0.9rem;
+    border-radius: 4px;
+}
+
+/* --- Pick up Question --- */
+.faq {
+    padding: 80px 20px;
+    background-color: #F4F4F4;
+    position: relative;
+}
+
+.faq-container {
+    max-width: 650px;
+    margin: 0 auto;
+}
+
+.faq-item {
+    background-color: #FFFFFF;
+    padding: 30px;
+    margin-bottom: 20px;
+    border-radius: 6px;
+}
+
+.faq-item h3 {
+    font-size: 1.1rem;
+    margin-bottom: 12px;
+}
+
+.faq-item p {
+    color: #666;
+    font-size: 0.9rem;
+    margin-bottom: 15px;
+}
+
+.btn-readmore {
+    display: inline-block;
+    border: 1px solid #ddd;
+    padding: 4px 12px;
+    font-size: 0.8rem;
+    color: #444;
+}
+
+/* --- Journal & Contact --- */
+.journal, .contact {
+    padding: 80px 20px;
+    background: #fff;
+    text-align: center;
+}
+
+.tab-nav {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    margin: 30px 0;
+    font-size: 0.9rem;
+    color: #888;
+}
+
+.tab-nav .active {
+    color: #111;
+    border-bottom: 1px solid #111;
+}
+
+.article-card {
+    max-width: 650px;
+    margin: 0 auto;
+    text-align: left;
+    border: 1px solid #eee;
+    padding: 20px;
+    border-radius: 6px;
+}
+
+.tag {
+    font-size: 0.75rem;
+    background: #111;
+    color: #fff;
+    padding: 2px 8px;
+    border-radius: 3px;
+}
+
+.article-card h3 {
+    font-size: 1.1rem;
+    margin: 10px 0;
+}
+
+.article-card p {
+    font-size: 0.85rem;
+    color: #666;
+}
+
+.btn-form {
+    display: inline-block;
+    background: #111;
+    color: #fff;
+    padding: 14px 40px;
+    border-radius: 4px;
+    margin-top: 20px;
+    font-weight: 500;
+}
+
+/* --- フッター --- */
+.footer {
+    background: #111;
+    color: #888;
+    text-align: center;
+    padding: 40px 20px;
+    font-size: 0.8rem;
+}
+
+/* --- お問い合わせフローティングボタン（右下固定） --- */
+.floating-contact {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    z-index: 99;
+}
+
+.floating-contact a {
+    display: block;
+    background: #FFFFFF;
+    color: #111;
+    writing-mode: vertical-rl;
+    padding: 15px 10px;
+    border: 1px solid #ccc;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    font-size: 0.85rem;
+    letter-spacing: 0.1em;
+    border-radius: 4px;
+}
