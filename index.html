@@ -31,6 +31,9 @@
             line-height: 1.8;
             letter-spacing: 0.04em;
             font-weight: 400;
+            overflow-x: hidden;
+            word-break: break-word;
+            overflow-wrap: break-word;
         }
 
         a {
@@ -193,6 +196,7 @@
             font-size: 20px;
             font-weight: 500;
             margin-bottom: 60px;
+            padding: 0 20px;
         }
 
         /* 届くもの（3カラムカード） */
@@ -248,72 +252,33 @@
         }
         .btn-primary:hover { opacity: 0.8; }
 
-        .btn-secondary {
-            display: inline-flex;
-            align-items: center;
-            justify-content: space-between;
-            background: linear-gradient(135deg, #2d2d2d 0%, #111111 100%);
-            color: var(--white);
-            padding: 16px 28px;
-            font-size: 15px;
-            font-weight: 700;
-            border-radius: 999px;
-            width: 100%;
-            max-width: 440px;
-            margin: 15px auto;
-            border: 1px solid #111111;
-            box-shadow: 0 10px 25px rgba(17, 17, 17, 0.16);
-        }
         .note {
             text-align: center;
             font-size: 13px;
             color: var(--gray);
         }
 
-        /* 円形矢印ボタン */
-        .circle-arrow-btn {
-            display: inline-flex;
-            width: 40px;
-            height: 40px;
-            border: 1px solid var(--white);
-            border-radius: 50%;
-            justify-content: center;
-            align-items: center;
-            transition: all 0.3s ease;
-            background: rgba(255, 255, 255, 0.12);
-            flex-shrink: 0;
-        }
-        .circle-arrow-btn svg {
-            width: 16px;
-            height: 16px;
-            fill: none;
-            stroke: var(--white);
-            stroke-width: 1.5;
-            transition: stroke 0.3s ease;
-        }
-        .circle-arrow-btn:hover {
-            background: var(--white);
-        }
-        .circle-arrow-btn:hover svg {
-            stroke: var(--ink);
-        }
-
-        /* こんな人におすすめ (For you) */
+        /* こんな人におすすめ (For you) - 文字崩れ防止対応 */
         .for-you-list {
             border-top: 1px solid var(--line);
         }
         .for-you-item {
             display: flex;
             align-items: center;
-            padding: 24px 0;
+            padding: 22px 0;
             border-bottom: 1px solid var(--line);
             font-size: 15px;
-            gap: 25px;
+            gap: 20px;
         }
         .for-you-num {
             font-family: 'Inter', sans-serif;
             font-size: 14px;
             color: var(--light);
+            flex-shrink: 0;
+        }
+        .for-you-text {
+            flex: 1;
+            min-width: 0;
         }
 
         /* 主催者紹介 */
@@ -389,9 +354,15 @@
             width: 110px;
             font-weight: 500;
             color: var(--gray);
+            flex-shrink: 0;
         }
         .event-val {
             flex: 1;
+            min-width: 0;
+        }
+        .event-val a {
+            word-break: break-all;
+            overflow-wrap: break-word;
         }
         .schedule-grid {
             display: grid;
@@ -480,11 +451,6 @@
             max-width: 800px;
             margin: 0 auto;
         }
-        .closing-or {
-            font-size: 14px;
-            color: var(--gray);
-            margin: 12px 0;
-        }
 
         /* フッター */
         .footer {
@@ -504,14 +470,30 @@
             color: #9A9A9A;
         }
 
-        /* レスポンシブ対応 */
+        /* レスポンシブ最適化 */
         @media(max-width: 720px) {
             .header { padding: 20px; }
             .cards-grid { grid-template-columns: 1fr; }
+            
+            /* ホスト画像のスマホバランス調整（大きくしすぎず中央配置） */
             .host-grid { grid-template-columns: 1fr; text-align: center; }
-            .host-img { margin: 0 auto; }
+            .host-img { width: 180px; height: 180px; margin: 0 auto 10px; }
+            
             .stats-grid { grid-template-columns: 1fr; gap: 12px; }
-            section { padding: 70px 20px; }
+            section { padding: 70px 16px; }
+            br.pc-br { display: none; }
+            .event-box { padding: 24px 16px; }
+            .event-row { flex-direction: column; gap: 6px; }
+            .event-key { width: auto; }
+            
+            /* スマホでの見出しや文字サイズを少し調整して1行化しやすくする */
+            .section-title { font-size: 22px; }
+            .for-you-item { font-size: 14px; gap: 15px; }
+        }
+
+        @media(max-width: 480px) {
+            .schedule-grid { grid-template-columns: 1fr; }
+            .for-you-item { font-size: 13.5px; }
         }
     </style>
 </head>
@@ -543,10 +525,10 @@
     <!-- コンセプト -->
     <section class="concept">
         <div class="section-label">Concept</div>
-        <div class="concept-lead">がんばりすぎなくていい。<br>AIにまかせて、自分の時間を取り戻そう。</div>
+        <div class="concept-lead">がんばりすぎなくていい。<br class="pc-br">AIにまかせて、自分の時間を取り戻そう。</div>
         <p class="concept-desc">
-            30〜40代の忙しいママ・事業主のためのAI活用コミュニティ。<br>
-            子育て・家事と事業の両立をサポートする時短のコツを定期配信します。<br>
+            30〜40代の忙しいママ・事業主のためのAI活用コミュニティ。<br class="pc-br">
+            子育て・家事と事業の両立をサポートする時短のコツを定期配信します。<br class="pc-br">
             目指すのは、心に余裕を生む「1日1時間の余白」です。
         </p>
     </section>
@@ -594,7 +576,7 @@
         </div>
     </div>
 
-    <!-- こんな人におすすめ (For you) -->
+    <!-- こんな人におすすめ (For you) - スマホの文字崩れ防止ラップ -->
     <section>
         <div class="section-label">For you</div>
         <h2 class="section-title">ひとつでも当てはまったら</h2>
@@ -602,23 +584,23 @@
         <div class="for-you-list">
             <div class="for-you-item">
                 <span class="for-you-num">01</span>
-                <span>子育て・家事と事業の両立に追われている</span>
+                <span class="for-you-text">子育て・家事と事業の両立に追われている</span>
             </div>
             <div class="for-you-item">
                 <span class="for-you-num">02</span>
-                <span>SNSやブログの発信に時間がかかっている</span>
+                <span class="for-you-text">SNSやブログの発信に時間がかかっている</span>
             </div>
             <div class="for-you-item">
                 <span class="for-you-num">03</span>
-                <span>AIを使ってみたいけど、やり方が分からない</span>
+                <span class="for-you-text">AIを使ってみたいけど、やり方が分からない</span>
             </div>
             <div class="for-you-item">
                 <span class="for-you-num">04</span>
-                <span>お金をかけずに、まずは気軽に試してみたい</span>
+                <span class="for-you-text">お金をかけずに、まずは気軽に試してみたい</span>
             </div>
             <div class="for-you-item">
                 <span class="for-you-num">05</span>
-                <span>スキマ時間を活用して効率よく事業を進めたい</span>
+                <span class="for-you-text">スキマ時間を活用して効率よく事業を進めたい</span>
             </div>
         </div>
     </section>
@@ -758,6 +740,7 @@
         <p class="footer-text">けいたのAI時短部｜1日1時間の自分時間をつくる／運営：けいた（@keita.nagareyama）</p>
     </footer>
 
+    <!-- カレンダー動作・スケジュールのJavaScript（そのまま維持） -->
     <script>
         (() => {
             const zoomUrl = 'https://us06web.zoom.us/j/81350508031?pwd=gSO7YVRkSZxGENaMkPUsxbVSq0sAxa.1';
